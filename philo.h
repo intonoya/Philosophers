@@ -6,7 +6,7 @@
 /*   By: intonoya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:34:33 by intonoya          #+#    #+#             */
-/*   Updated: 2022/12/30 20:47:05 by intonoya         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:33:20 by tumolabs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <limits.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				n;
 	int				m_count;
@@ -50,20 +50,18 @@ typedef struct s_info
 	pthread_mutex_t	dead;
 }		t_info;
 
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
-void ft_print(t_philo *philo, char *str);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
+void		ft_print(t_philo *philo, char *str);
 long long	timestamp(void);
-void	ft_usleep(int ms);
-int	is_dead(t_philo *philo, int num);
-
-int	philo_init(t_info *data);
-int	check_num(char **str);
-int	var_init(t_info *data, char **av);
-
-void	*check_if_death(void *p);
-void	philo_taking_fork(t_philo *philo);
-void	philo_eating(t_philo *philo);
-void	*philo_life(void *p);
+void		ft_usleep(int ms);
+int			is_dead(t_philo *philo, int num);
+int			philo_init(t_info *data);
+int			check_num(char **str);
+int			var_init(t_info *data, char **av);
+void		*check_if_death(void *p);
+void		philo_taking_fork(t_philo *philo);
+void		philo_eating(t_philo *philo);
+void		*philo_life(void *p);
 
 #endif

@@ -1,45 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                            :+:      :+:    :+:    */
+/*   utils1.c                                            :+:      :+:    :+:  */
 /*                                                    +:+ +:+         +:+     */
 /*   By: intonoya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:32:30 by intonoya          #+#    #+#             */
-/*   Updated: 2023/01/03 15:23:50 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:29:28 by tumolabs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_free(t_info *data)
+int	ft_atoi(const char *str)
 {
-	int	i;
+	long	i;
+	long	nbr;
+	int		min;
 
-	i = -1;
-	while (++i < data->n_philo)
+	i = 0;
+	min = 0;
+	nbr = 0;
+	while (str[i] != '\0' && (str[i] == 32 || str[i] == '\t' || str[i] == '\n'
+			|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
+			i++;
+	if (str[i] != '\0' && str[i] == '-')
 	{
-		pthread_mutex_destroy(&data->philo[i].left_fork);
-		pthread_mutex_destroy(data->philo[i].right_fork);
+		min = 1;
+		i++;
 	}
-	free(data->philo);
-	pthread_mutex_destroy(&data->print);
-	pthread_mutex_destroy(&data->m_stop);
-	pthread_mutex_destroy(&data->m_eat);
-	pthread_mutex_destroy(&data->dead);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] != '\0' && ft_isdigit(str[i]))
+		nbr = (nbr * 10) + (str[i++] - '0');
+	if (min == 1)
+		return (-nbr);
+	return (nbr);
 }
 
-int	main(int argc, char **argv)
+int	ft_isdigit(int c)
 {
-	t_info	data;
-
-	if (argc != 5 && argc != 6)
+	if ((c <= '9') && (c >= '0'))
+		return (1);
+	else
 		return (0);
-	if (var_init(&data, argv) == 1)
-	{
-		free(data.philo);
-		return (0);
-	}
-	philo_init(&data);
-	ft_free(&data);
 }
