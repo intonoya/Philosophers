@@ -6,7 +6,7 @@
 /*   By: intonoya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:32:30 by intonoya          #+#    #+#             */
-/*   Updated: 2023/01/03 15:22:44 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:22:44 by intonoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_num(char **str)
 	return (0);
 }
 
-int	var_init(t_info *data, char **av)
+int	var_init(t_info *data, char **argv)
 {
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->m_stop, NULL);
@@ -71,19 +71,19 @@ int	var_init(t_info *data, char **av)
 	data->philo = malloc(sizeof(t_philo) * data->n_philo);
 	if (data->philo == NULL)
 		return (2);
-	if (check_num(av))
+	if (check_num(argv))
 	{
 		printf("Invalid Arguments\n");
 		return (1);
 	}
 	data->philo_eat = 0;
-	data->n_philo = ft_atoi(av[1]);
-	data->t_die = ft_atoi(av[2]);
-	data->t_eat = ft_atoi(av[3]);
-	data->t_sleep = ft_atoi(av[4]);
-	if (av[5])
-		data->n_eat = ft_atoi(av[5]);
-	if (av[5] && data->n_eat == 0)
+	data->n_philo = ft_atoi(argv[1]);
+	data->t_die = ft_atoi(argv[2]);
+	data->t_eat = ft_atoi(argv[3]);
+	data->t_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		data->n_eat = ft_atoi(argv[5]);
+	if (argv[5] && data->n_eat == 0)
 		return (1);
 	return (0);
 }
